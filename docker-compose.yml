@@ -1,0 +1,19 @@
+version: '3.8'   # o '3.8' también está perfecto
+
+services:
+  mysql:
+    image: mysql:8.0          # versión estable y muy usada (mysql:9 también existe pero 8.0 es más compatible)
+    container_name: mi-mysql-login-register
+    restart: always           # se reinicia solo si se cae
+    environment:
+      MYSQL_ROOT_PASSWORD: "Password2003$root"          # CAMBIA ESTO por una contraseña tuya fuerte
+      MYSQL_DATABASE: login_db               # nombre de la base de datos que se crea automáticamente
+      MYSQL_USER: glaginestra                    # usuario normal (no root)
+      MYSQL_PASSWORD: "Password2003$"          # contraseña del usuario normal (cámbiala)
+    ports:
+      - "3306:3306"           # puerto 3306 de tu PC → puerto 3306 del contenedor
+    volumes:
+      - mysql-data:/var/lib/mysql   # guarda los datos para que no se pierdan
+
+volumes:
+  mysql-data:                    # nombre del volumen (puede ser lo que quieras)
